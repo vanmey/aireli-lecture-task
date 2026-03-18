@@ -10,7 +10,10 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     email,
     password
   };
-
-  // please finish this function
-
+  try {
+    const user = await createUser(req.body);
+    res.status(201).json(user);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 };
